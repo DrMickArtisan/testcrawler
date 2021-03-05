@@ -28,7 +28,7 @@ class FormulaireControllerTest extends WebTestCase
     public function providePhases() {
         return  [
             'ToutOk' => [
-                        ['formulaire[myArray]'  => ['hs','con','hdj']]
+                        ['formulaire[myArray]'  => ['hs','hdj']]
                     ],
             'nOk' => [
                         ['formulaire[myArray]'  => ['HC']]
