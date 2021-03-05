@@ -1,0 +1,33 @@
+{% macro mesRadiosMultiples(form,lavariable,avecLabel = true) %}
+        {% set isRequired = '' %}
+        {% if (form[lavariable].vars.required is defined)and (form[lavariable].vars.required)%}
+            {% set isRequired = 'required' %}
+        {% endif %}
+        <div class="form-group form-item webform-component webform-component-radios webform-container-inline">
+        {% if avecLabel == true %}
+            <label class="{{isRequired}}" for="{{form[lavariable].vars.id}}" >{{form[lavariable].vars.label}}</label>
+        {% endif %}
+        <div id="{{form[lavariable].vars.id}}" class="form-radios">
+            {% if avecLabel == true %}
+            <div class="conteneur form-radio-control">
+            {% endif %}
+                {%for  unChoix in form[lavariable].vars.choices %}
+                    {% set isSelected = '' %}
+                    {% if unChoix.value in form[lavariable].vars.value %}
+                        {% set isSelected = 'checked' %}
+                    {% endif %}
+                    <div class="form-item form-type-radio form-item-submitted-patient-fieldset-patient-gender">
+                        <input class="form-radio" id="{{form[lavariable].vars.id}}{{unChoix.value}}" type="checkbox" name="{{form[lavariable].vars.full_name}}" value={{unChoix.value}} {{isSelected}}>
+                        <label class="option" for="{{form[lavariable].vars.id}}{{unChoix.value}}">{{unChoix.label}}</label>
+                    </div>
+                {% endfor %}
+            {% if avecLabel == true %}
+            </div>
+            {% endif %}
+        </div>
+    </div>
+     <div class="messages error">
+        {{ form_errors(form[lavariable]) }}
+    </div>
+    {% do form[lavariable].setRendered %}
+{% endmacro %}

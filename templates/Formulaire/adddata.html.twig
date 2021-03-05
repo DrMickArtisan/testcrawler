@@ -1,0 +1,6 @@
+{% extends 'base.html.twig' %}
+{% from 'inputMacros.html' import mesRadiosMultiples as mesRadiosMultiples %}
+
+{% block formulaire %}
+    {{mesRadiosMultiples(form,'myArray',true)}}
+{% endblock %}
